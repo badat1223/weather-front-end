@@ -1,43 +1,33 @@
-import {
-  FunctionComponent,
-  ReactElement,
-  useState,
-  useEffect,
-  ChangeEvent,
-} from "react";
-
-import {
-  Button,
-  Card,
-  Navbar,
-  Nav,
-  Table,
-  Container,
-  Row,
-  Col,
-  Form,
-} from "react-bootstrap";
-
+import { FunctionComponent, ReactElement, useState, useEffect } from "react";
+import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
 import { WeatherSearch } from "../models/weather-search-model";
+import { services } from "../services/services";
 
 export const WeatherForecast: FunctionComponent = (): ReactElement => {
   const [weatherSearch, setWeatherSearch] = useState<WeatherSearch>();
-  const [cityInput, setCityInput] = useState<string>("");
+  const [cityName, setCityName] = useState<string>("");
   const [typedValue, setTypedValue] = useState<string>("");
 
+  const fetchWeatherData = async (city: string) => {
+    const result = await services.getWeatherData(city);
+    if (!!result) {
+      setWeatherSearch(result.data);
+    }
+  };
+
   const onCitySearchChange = (event: any) => {
-    setCityInput(event.target.value);
+    setCityName(event.target.value);
     setTypedValue(event.target.value);
   };
 
-  const handleTextSearch = () => {
-    console.log("Submit: ", cityInput);
+  const handleClickSubmit = () => {
+    fetchWeatherData(cityName);
     setTypedValue("");
   };
 
   useEffect(() => {
-    //console.log(cityInput);
-  }, [cityInput, typedValue]);
+    console.log(weatherSearch);
+  }, [weatherSearch]);
 
   return (
     <>
@@ -67,7 +57,7 @@ export const WeatherForecast: FunctionComponent = (): ReactElement => {
                       <Button
                         className="mb-6"
                         variant="primary"
-                        onClick={handleTextSearch}
+                        onClick={handleClickSubmit}
                       >
                         Submit
                       </Button>
