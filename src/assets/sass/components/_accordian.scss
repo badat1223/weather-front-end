@@ -1,0 +1,119 @@
+.accordion-intro {
+  background-color: $mainBlue;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  &__title {
+    margin-top: 0;
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 2.2rem;
+
+    @mixin atSmall {
+      font-size: 3rem;
+    }
+  }
+  &__subtitle {
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1.4rem;
+
+    @mixin atSmall {
+      font-size: 1.8rem;
+    }
+  }
+  &__description {
+    color: $mainWhite;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+
+    @mixin atSmall {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+.accordion-example {
+  background-color: $mainWhite;
+  padding: 2rem 1rem;
+
+  &__title {
+    margin-top: 0;
+    color: $mainBlue;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__accordion-title {
+    background-color: $mainBlue;
+    padding: 0.8rem 1rem;
+    color: $mainWhite;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid $darkBlue;
+    cursor: pointer;
+
+    &:after {
+      content: '\002b';
+      float: right;
+      transition: all .3s ease-in;
+    }
+
+    &--active {
+      &:after {
+        content: '\2212';
+        transform: rotate(360deg);
+      }
+    }
+
+    &:hover {
+      background-color: $darkBlue;
+    }
+
+    @mixin atSmall {
+      font-size: 1.3rem;
+    }
+
+  }
+
+  &__accordion-panel {
+    background-color: $lightBlue;
+    color: $mainWhite;
+    font-size: 0.9rem;
+    display: none;
+    opacity: 0;
+    height: 0;
+    transform: translateX(-100%);
+    transition: opacity .3s ease-in, transform .3s ease-in;
+   
+    p {
+      margin: 0;
+      display:none;
+    }
+
+    &--active {
+      transform: translateX(0);
+      padding: 0.05rem 1rem;
+      border: 1px solid $darkBlue;
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+
+      p {
+        margin: 1rem 0;
+      }
+
+      &__text{
+        display: none
+      }
+    }
+
+
+    @mixin atSmall {
+      font-size: 1.1rem;
+    }
+  }
+
+}

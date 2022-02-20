@@ -31,21 +31,21 @@ export const WeatherForecast: FunctionComponent = (): ReactElement => {
 
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col md="2"></Col>
-          <Col md="8">
-            <div className="card-layout">
-              <Card>
-                <Card.Header>
-                  <Card.Title as="h4">Weather Forecast</Card.Title>
+     
+       
+       
+          <div className="col-12-xs col-6-md col-6-lg">
+            <div className="card p-0">
+              
+                
+                <h3 className="card-title m-1">Weather Forecast</h3>
                   <div className="content">
                     <p className="card-category">Search by city name</p>
-                  </div>
-                </Card.Header>
-                <Card.Body>
-                  <Form>
-                    <Row>
+                </div>
+                
+                  <Form className="card-body">
+                    <div className="row">
+                      <div className="col-6-md col-6-lg">
                       <Form.Group className="mb-6" controlId="cityInputSearch">
                         <Form.Control
                           type="text"
@@ -54,22 +54,25 @@ export const WeatherForecast: FunctionComponent = (): ReactElement => {
                           value={typedValue}
                         />
                       </Form.Group>
-                      <Button
-                        className="mb-6"
-                        variant="primary"
+                      </div>
+                      <div className="col-6-md col-6-lg">
+                      <a
+                        className="btn-outlined-secondary text-secondary text-hover-white "
+                        
                         onClick={handleClickSubmit}
                       >
                         Submit
-                      </Button>
-                    </Row>
+                      </a>
+                      </div>
+                    </div>
                   </Form>
-                </Card.Body>
-              </Card>
+                </div>
+            
             </div>
-          </Col>
-          <Col md="2"></Col>
-        </Row>
-      </Container>
+          
+          
+        
+      
     </>
   );
 };
